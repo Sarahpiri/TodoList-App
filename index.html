@@ -183,23 +183,107 @@
       <!-- Header -->
       <div class="w-full flex flex-col items-start">
         <h1 class="md:text-2xl font-extrabold text-gray-900">تسک‌های امروز</h1>
-        <p class="text-gray-600 mb-6 text-sm md:text-lg">3 تسک را باید انجام دهید.</p>
+        <p class="text-gray-600 mb-6 text-sm md:text-lg">
+          3 تسک را باید انجام دهید.
+        </p>
       </div>
 
       <!-- Add Task Initial State (shown when no tasks exist) -->
-      <div id="initialState" class="bg-white rounded-2xl shadow-sm text-center mb-10">
+      <div
+        id="initialState"
+        class="bg-white rounded-2xl shadow-sm text-center mb-10"
+      >
         <button
           class="w-full flex flex-row justify-start items-center gap-1 p-2 border-2 border-dashed rounded-md border-[#bababa] cursor-pointer"
         >
-          <img src="./assets/icons/add.png" alt="افزودن وظیفه" class="w-5 " />
+          <img src="./assets/icons/add.png" alt="افزودن وظیفه" class="w-5" />
           <h2 class="text-md font-bold text-[#007BFF] mb-2">
             افزودن وظیفه جدید
           </h2>
         </button>
 
+        <!-- Add Task Modal -->
+        <div
+          id="addTaskModal"
+          class=" items-center justify-center"
+        >
+          <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4 hidden">
+            <form id="taskForm">
+              <div class="mb-4 flex flex-col gap-3">
+                <input
+                  type="text"
+                  id="taskTitle"
+                  placeholder="نام تسک"
+                  class="w-full px-3 py-2 rounded-md font-bold"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="taskDescription"
+                  placeholder="توضیحات"
+                  class="w-full px-3 py-2 rounded-md"
+                />
+              </div>
+              <div class="">
+                <div class="mb-4">
+                  <button
+                    class="flex gap-2 text-sm font-medium text-[#AFAEB2] mb-1"
+                  >
+                    <img src="./assets/icons/tag-right.png" alt="tags" />
+                    <img
+                      src="./assets/icons/tag-right(1).png"
+                      alt="tags"
+                      class="hidden"
+                    />
+                    تگ ها
+                  </button>
+                </div>
+
+                <!-- Priority Filter -->
+                <div class="flex gap-2 mb-6 border p-2 rounded-lg">
+                  <button
+                    data-priority="low"
+                    class="priority-filter px-3 py-1 rounded-lg bg-[#C3FFF1] text-[#11A483] text-sm font-medium hover:bg-green-200"
+                  >
+                    پایین
+                  </button>
+                  <button
+                    data-priority="medium"
+                    class="priority-filter px-3 py-1 rounded-lg bg-[#FFEFD6] text-[#FFAF37] text-sm font-medium hover:bg-yellow-100"
+                  >
+                    متوسط
+                  </button>
+                  <button
+                    data-priority="high"
+                    class="priority-filter px-3 py-1 rounded-lg bg-[#FFE2DB] text-[#FF5F37] text-sm font-medium hover:bg-red-200"
+                  >
+                    بالا
+                  </button>
+                </div>
+                <input type="hidden" id="taskPriority" value="medium" />
+              </div>
+              <div class="flex justify-end gap-2">
+                <button
+                  type="submit"
+                  class="px-4 py-2 bg-[#007BFF] text-white rounded-lg hover:bg-blue-700"
+                >
+                  اضافه کردن تسک
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
         <div class="flex flex-col justify-center items-center">
-          <img src="./assets/images/2143202_Artboard 1.png" alt="" class="mt-14 mb-8"/>
-          <h5 class="text-[#7D7D7F] font-bold">چه کارهایی امروز برای انجام داری؟</h5>
+          <img
+            src="./assets/images/2143202_Artboard 1.png"
+            alt=""
+            class="mt-14 mb-8"
+          />
+          <h5 class="text-[#7D7D7F] font-bold">
+            چه کارهایی امروز برای انجام داری؟
+          </h5>
           <p class="text-[#AFAEB2] text-sm">
             میتونی الان تسک‌هاتو اینجا بنویسی و برنامه ریزی رو شروع کنی!
           </p>
@@ -208,112 +292,41 @@
 
       <!-- Tasks Container (hidden initially) -->
       <div id="tasksContainer" class="">
-        
-
         <!-- Active Tasks -->
         <div
           id="activeTasksContainer"
           class="border rounded-2xl shadow-sm p-6 flex justify-between items-center mb-4 mt-6"
         >
-                  
           <div id="activeTasksList" class="space-y-4">
             <!-- Tasks will be added here -->
           </div>
-          <img src="./assets/icons/Frame 33317.png" alt="frame" id="activeTasksCount">
+          <img
+            src="./assets/icons/Frame 33317.png"
+            alt="frame"
+            id="activeTasksCount"
+          />
         </div>
 
         <!-- Completed Tasks -->
-        <div
-          id="completedTasksContainer"
-          class="rounded-2xl shadow-sm mt-6"
-        >
+        <div id="completedTasksContainer" class="rounded-2xl shadow-sm mt-6">
           <h2 class="text-lg font-bold">تسک‌های انجام شده</h2>
           <p class="text-sm text-[#696969]">() تسک انجام شده است.</p>
 
-          <div class="border rounded-2xl shadow-sm p-6 flex justify-between items-center mb-4 mt-6">
+          <div
+            class="border rounded-2xl shadow-sm p-6 flex justify-between items-center mb-4 mt-6"
+          >
             <div id="completedTasksList" class="space-y-4">
               <!-- Completed tasks will be moved here -->
-              
             </div>
-            <img src="./assets/icons/Frame 33317.png" alt="frame" id="activeTasksCount">
-          </div>
-          
-        </div>
-      </div>
-
-    </main>
-
-    <!-- Add Task Modal -->
-    <div
-      id="addTaskModal"
-      class="hidden fixed inset-0 bg-black bg-opacity-50 items-center justify-center "
-    >
-      <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4">
-        <form id="taskForm">
-          <div class="mb-4 flex flex-col gap-3">
-            <input
-              type="text"
-              id="taskTitle"
-              placeholder="نام تسک"
-              class="w-full px-3 py-2 rounded-md font-bold"
-              required
+            <img
+              src="./assets/icons/Frame 33317.png"
+              alt="frame"
+              id="activeTasksCount"
             />
-
-            <input
-            type="text"
-              id="taskDescription"
-              placeholder="توضیحات"
-              class="w-full px-3 py-2  rounded-md"
-            ></input>
           </div>
-          <div class="">
-            <div class=" mb-4">
-              
-            <button class="flex gap-2 text-sm font-medium text-[#AFAEB2] mb-1"
-              >
-              <img src="./assets/icons/tag-right.png" alt="tags">
-              <img src="./assets/icons/tag-right(1).png" alt="tags" class="hidden">
-              تگ ها</button
-            >
-            </div>
-            
-            <!-- Priority Filter -->
-        <div class="flex gap-2 mb-6 border p-2 rounded-lg">
-          
-          
-          <button
-            data-priority="low"
-            class="priority-filter px-3 py-1 rounded-lg  bg-[#C3FFF1] text-[#11A483] text-sm font-medium hover:bg-green-200"
-          >
-            پایین
-          </button>
-          <button
-            data-priority="medium"
-            class="priority-filter px-3 py-1 rounded-lg bg-[#FFEFD6] text-[#FFAF37] text-sm font-medium hover:bg-yellow-100"
-          >
-            متوسط
-          </button>
-          <button
-            data-priority="high"
-            class="priority-filter px-3 py-1 rounded-lg bg-[#FFE2DB] text-[#FF5F37] text-sm font-medium hover:bg-red-200"
-          >
-            بالا
-          </button>
         </div>
-            <input type="hidden" id="taskPriority" value="medium" />
-          </div>
-          <div class="flex justify-end gap-2">
-            
-            <button
-              type="submit"
-              class="px-4 py-2 bg-[#007BFF] text-white rounded-lg hover:bg-blue-700"
-            >
-            اضافه کردن تسک
-            </button>
-          </div>
-        </form>
       </div>
-    </div>
+    </main>
 
     <script src="./main.js"></script>
   </body>
