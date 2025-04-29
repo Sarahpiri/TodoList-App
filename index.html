@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="./styles/styles.css" />
 </head>
 
-<body>
+<body class="flex flex-col sm:flex-row">
 
   <!-- Mobile Nav-bar -->
   <header class="relative sm:hidden">
@@ -114,7 +114,45 @@
     </div>
   </aside>
 
+  <main class="flex flex-col flex-1 sm:mr-[200px] mr-4">
+
+    <!-- Mobile Profile -->
+    <section class="sm:hidden flex justify-start items-center mt-6 gap-3">
+      <img src="./assets/images/profile.png" alt="profile" class="w-14 h-14">
+      <div class="flex flex-col justify-center items-start">
+        <h1 class="text-lg font-extrabold text-[var(--text-primary)]">سلام، رویا</h1>
+        <h2 class="text-sm font-medium text-[var(--text-secondary)]">سه شنبه، ۵ اردیبهشت ۱۴۰۴</h2>
+      </div>
+    </section>
+
+    <!-- Pending Tasks -->
+    <section class="flex flex-col justify-between items-start w-auto sm:w-[744px] mt-[60px] sm:mt-16 gap-4">
+      <div class="flex flex-col w-full gap-1">
+        <h2 class="whitespace-nowrap text-base sm:text-xl font-extrabold text-[var(--text-primary)]">تسک های امروز
+        </h2>
+        <h3 class="whitespace-nowrap text-xs sm:text-sm font-extrabold text-[var(--text-secondary)]"><span
+            id="pending-count"></span>
+          تسک را باید انجام دهید.</h3>
+      </div>
+      <!-- Input Here -->
+      <ul id="pending-tasks" class="flex flex-col w-full gap-4"></ul>
+    </section>
+
+    <!-- Done Tasks -->
+    <section class="flex flex-col justify-between items-start w-auto sm:w-[744px] mt-[60px] sm:mt-16 gap-4">
+      <div class="flex flex-col w-full gap-1">
+        <h2 class="whitespace-nowrap text-base sm:text-xl font-extrabold text-[var(--text-primary)]">تسک های انجام شده
+        </h2>
+        <h3 class="whitespace-nowrap text-xs sm:text-sm font-extrabold text-[var(--text-secondary)]"><span
+            id="done-count"></span> تسک انجام شده است.</h3>
+      </div>
+      <ul id="done-tasks" class="flex flex-col w-full gap-4"></ul>
+    </section>
+
+  </main>
+
   <script src="./main.js"></script>
+
 </body>
 
 </html>
