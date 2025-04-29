@@ -207,7 +207,7 @@
           id="addTaskModal"
           class="items-center justify-center rounded-3xl w-full shadow-[0px_4px_58.10px_0px_#0000000F] mt-8 p-4"
         >
-          <form id="taskForm" class="">
+          <form id="taskForm" class="flex flex-col gap-3">
             <input
               type="text"
               id="taskTitle"
@@ -224,22 +224,21 @@
             />
 
             <!-- tag button -->
-            <div class="mb-4">
-              <button
-                class="flex gap-2 text-sm font-medium text-[#AFAEB2] mb-1"
-              >
-                <img src="./assets/icons/tag-right.png" alt="tags" />
-                <img
-                  src="./assets/icons/tag-right(1).png"
-                  alt="tags"
-                  class="hidden"
-                />
-                تگ ها
-              </button>
-            </div>
+
+            <button
+              class="flex w-fit gap-2 border p-2 rounded-lg text-sm font-medium text-[#AFAEB2] mb-1"
+            >
+              <img src="./assets/icons/tag-right.png" alt="tags" />
+              <img
+                src="./assets/icons/tag-right(1).png"
+                alt="tags"
+                class="hidden"
+              />
+              تگ ها
+            </button>
 
             <!-- Priority Filter -->
-            <div class="flex gap-2 mb-6 border p-2 rounded-lg">
+            <div class="flex gap-6 mb-6 border p-2 rounded-lg w-fit shadow-[0px_4px_58.10px_0px_#0000000F]">
               <button
                 data-priority="low"
                 class="priority-filter px-3 py-1 rounded-lg bg-[#C3FFF1] text-[#11A483] text-sm font-medium hover:bg-green-200"
@@ -259,10 +258,10 @@
                 بالا
               </button>
             </div>
-            <div class="w-full flex justify-end gap-2">
+            <div class="w-full flex justify-end gap-2 border-t-[1px]">
               <button
                 type="submit"
-                class="px-4 py-2 bg-[#007BFF] text-white rounded-lg hover:bg-blue-700"
+                class="px-4 py-2 mt-4 bg-[#007BFF] text-white rounded-lg hover:bg-blue-700"
               >
                 اضافه کردن تسک
               </button>
