@@ -183,8 +183,8 @@
       <!-- Header -->
       <div class="w-full flex flex-col items-start">
         <h1 class="md:text-2xl font-extrabold text-gray-900">تسک‌های امروز</h1>
-        <p class="text-gray-600 mb-6 text-sm md:text-lg">
-          3 تسک را باید انجام دهید.
+        <p id="activeTasksCountText" class="text-gray-500 mb-6 md:text-lg">
+          ۰ تسک را باید انجام دهید.
         </p>
       </div>
 
@@ -193,83 +193,21 @@
         id="initialState"
         class="bg-white rounded-2xl shadow-sm text-center mb-10"
       >
-        <button
-          class="w-full flex flex-row justify-start items-center gap-1 p-2 border-2 border-dashed rounded-md border-[#bababa] cursor-pointer"
-        >
-          <img src="./assets/icons/add.png" alt="افزودن وظیفه" class="w-5" />
-          <h2 class="text-md font-bold text-[#007BFF] mb-2">
-            افزودن وظیفه جدید
-          </h2>
-        </button>
-
-        <!-- Add Task Modal -->
-        <div
-          id="addTaskModal"
-          class="items-center justify-center rounded-3xl w-full shadow-[0px_4px_58.10px_0px_#0000000F] mt-8 p-4"
-        >
-          <form id="taskForm" class="flex flex-col gap-3">
-            <input
-              type="text"
-              id="taskTitle"
-              placeholder="نام تسک"
-              class="w-full px-3 py-2 rounded-md font-bold"
-              required
-            />
-
-            <input
-              type="text"
-              id="taskDescription"
-              placeholder="توضیحات"
-              class="w-full px-3 py-2 rounded-md"
-            />
-
-            <!-- tag button -->
-
-            <button
-              class="flex w-fit gap-2 border p-2 rounded-lg text-sm font-medium text-[#AFAEB2] mb-1"
-            >
-              <img src="./assets/icons/tag-right.png" alt="tags" />
-              <img
-                src="./assets/icons/tag-right(1).png"
-                alt="tags"
-                class="hidden"
-              />
-              تگ ها
-            </button>
-
-            <!-- Priority Filter -->
-            <div class="flex gap-6 mb-6 border p-2 rounded-lg w-fit shadow-[0px_4px_58.10px_0px_#0000000F]">
-              <button
-                data-priority="low"
-                class="priority-filter px-3 py-1 rounded-lg bg-[#C3FFF1] text-[#11A483] text-sm font-medium hover:bg-green-200"
-              >
-                پایین
-              </button>
-              <button
-                data-priority="medium"
-                class="priority-filter px-3 py-1 rounded-lg bg-[#FFEFD6] text-[#FFAF37] text-sm font-medium hover:bg-yellow-100"
-              >
-                متوسط
-              </button>
-              <button
-                data-priority="high"
-                class="priority-filter px-3 py-1 rounded-lg bg-[#FFE2DB] text-[#FF5F37] text-sm font-medium hover:bg-red-200"
-              >
-                بالا
-              </button>
-            </div>
-            <div class="w-full flex justify-end gap-2 border-t-[1px]">
-              <button
-                type="submit"
-                class="px-4 py-2 mt-4 bg-[#007BFF] text-white rounded-lg hover:bg-blue-700"
-              >
-                اضافه کردن تسک
-              </button>
-            </div>
-          </form>
+        <div id="addTaskButtonSection">
+          <button
+            class="w-full flex flex-row justify-start items-center gap-1 p-2 border-2 border-dashed rounded-md border-[#bababa] cursor-pointer"
+          >
+            <img src="./assets/icons/add.png" alt="افزودن وظیفه" class="w-5" />
+            <h2 class="text-md font-bold text-[#007BFF] mb-2">
+              افزودن وظیفه جدید
+            </h2>
+          </button>
         </div>
 
-        <div class="flex flex-col justify-center items-center">
+        <div
+          id="initialContent"
+          class="flex flex-col justify-center items-center"
+        >
           <img
             src="./assets/images/2143202_Artboard 1.png"
             alt=""
@@ -283,26 +221,99 @@
           </p>
         </div>
       </div>
+      <!--  Task form -->
+      <div
+        id="addTaskModal"
+        class="items-center justify-center rounded-3xl w-full shadow-[0px_4px_58.10px_0px_#0000000F] mt-8 p-4"
+      >
+        <form id="taskForm" class="flex flex-col gap-3">
+          <input
+            type="text"
+            id="taskTitle"
+            placeholder="نام تسک"
+            class="w-full px-3 py-2 rounded-md font-bold"
+            required
+          />
+
+          <input
+            type="text"
+            id="taskDescription"
+            placeholder="توضیحات"
+            class="w-full px-3 py-2 rounded-md"
+          />
+
+          <!-- tag button -->
+
+          <button
+            id="tagBtn"
+            class="flex w-fit gap-2 border p-2 rounded-lg text-sm font-medium text-[#AFAEB2] mb-1"
+          >
+            <img
+              src="./assets/icons/tag-right.png"
+              alt="tags"
+              class="default-tag-icon"
+            />
+            <img
+              src="./assets/icons/tag-right(1).png"
+              alt="tags"
+              class="hidden active-tag-icon"
+            />
+            تگ ها
+          </button>
+
+          <!-- Priority Filter -->
+          <div
+            class="hidden gap-6 mb-6 border p-2 rounded-lg w-fit shadow-md"
+            id="priorityTags"
+          >
+            <button
+              data-priority="low"
+              id="low"
+              class="priority-filter px-3 py-1 rounded-lg bg-[#C3FFF1] text-[#11A483] text-sm font-medium hover:bg-green-200"
+            >
+              پایین
+            </button>
+            <button
+              data-priority="medium"
+              id="medium"
+              class="priority-filter px-3 py-1 rounded-lg bg-[#FFEFD6] text-[#FFAF37] text-sm font-medium hover:bg-yellow-100"
+            >
+              متوسط
+            </button>
+            <button
+              data-priority="high"
+              id="high"
+              class="priority-filter px-3 py-1 rounded-lg bg-[#FFE2DB] text-[#FF5F37] text-sm font-medium hover:bg-red-200"
+            >
+              بالا
+            </button>
+          </div>
+          <div class="selected-tag-container"></div>
+          <div class="w-full flex justify-end gap-2 border-t-[1px]">
+            <button
+              type="submit"
+              class="px-4 py-2 mt-4 bg-[#007BFF] text-white rounded-lg hover:bg-blue-400"
+            >
+              اضافه کردن تسک
+            </button>
+          </div>
+        </form>
+      </div>
 
       <!-- Tasks Container (hidden initially) -->
-      <div id="tasksContainer" class="">
+      <div id="tasksContainer" class="hidden">
         <!-- Active Tasks -->
         <div
           id="activeTasksContainer"
-          class="border rounded-2xl shadow-sm p-6 flex justify-between items-center mb-4 mt-6"
+          class="rounded-2xl shadow-sm w-full flex justify-between items-center mb-4 mt-6"
         >
-          <div id="activeTasksList" class="space-y-4">
+          <div id="activeTasksList" class="space-y-4 w-full">
             <!-- Tasks will be added here -->
           </div>
-          <img
-            src="./assets/icons/Frame 33317.png"
-            alt="frame"
-            id="activeTasksCount"
-          />
         </div>
 
         <!-- Completed Tasks -->
-        <div id="completedTasksContainer" class="rounded-2xl shadow-sm mt-6">
+        <!-- <div id="completedTasksContainer" class="rounded-2xl shadow-sm mt-6">
           <h2 class="text-lg font-bold">تسک‌های انجام شده</h2>
           <p class="text-sm text-[#696969]">() تسک انجام شده است.</p>
 
@@ -310,7 +321,7 @@
             class="border rounded-2xl shadow-sm p-6 flex justify-between items-center mb-4 mt-6"
           >
             <div id="completedTasksList" class="space-y-4">
-              <!-- Completed tasks will be moved here -->
+              Completed tasks will be moved here
             </div>
             <img
               src="./assets/icons/Frame 33317.png"
@@ -318,7 +329,7 @@
               id="activeTasksCount"
             />
           </div>
-        </div>
+        </div> -->
       </div>
     </main>
 
