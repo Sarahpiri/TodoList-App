@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
               <div class="task-actions relative">
                   <img src="./assets/icons/Frame 33317.png" alt="actions" class="cursor-pointer">
-                  <div class="flex flex-row absolute top-[25px] left-[-50px] bg-white shadow rounded-md p-2  gap-2 z-10">
+                  <div class="hidden flex flex-row absolute top-[25px] left-[-50px] bg-white shadow rounded-md p-2  gap-2 z-10">
                       <img src="./assets/icons/tabler_edit.png" alt="edit" class="cursor-pointer w-5 h-5 edit-task-icon">
                       <img src="./assets/icons/Vector.png" alt="delete" class="cursor-pointer w-5 h-5 delete-task-icon">
                   </div>
