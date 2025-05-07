@@ -436,7 +436,6 @@ document.addEventListener("DOMContentLoaded", function () {
       if (task.priority) {
         editTagBtn.classList.add("hidden");
         displayEditSelectedTag(task.priority);
-        
         // Enable the priority button in the tag list
         editPriorityButtons.forEach((button) => {
           if (button.dataset.priority === task.priority) {
