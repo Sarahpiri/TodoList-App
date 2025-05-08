@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let tasks = [];
   let selectedPriority = null;
-  let currentlyEditingTask = null;
+ 
 
   function updateTaskCounts() {
     // Pending task counter
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateTaskCounts();
 
-    // بستن فرم ویرایش در صورت وجود
+    // closing edit from if exist
     const editForm = document.querySelector(".edit-task-form");
     if (editForm) {
       editForm.remove();
@@ -336,7 +336,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
       <div class="w-[calc(100%+32px)] flex justify-end items-center -mx-[16px] mt-4 bg-[--background-light] border-t border-[#EBEDEF] dark:border-[--gray-800] pt-4 pl-4 gap-2">
           <button type="button" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 cancel-edit-btn">لغو</button>
-          <button type="submit" class="px-4 py-2 bg-[--primary] text-white rounded-lg hover:bg-blue-400">ذخیره تغییرات</button>
+          <button type="submit" class="px-4 py-2 bg-[--primary] text-white rounded-lg hover:bg-blue-400"> ویرایش تسک</button>
       </div>`;
 
     const taskElement = activeTasksList.querySelector(`[data-id="${task.id}"]`);
@@ -432,11 +432,11 @@ document.addEventListener("DOMContentLoaded", function () {
         currentlyEditingTask = null;
       });
 
-      // نمایش تگ انتخاب شده‌ی اولیه در فرم ویرایش
+      // Show the initial selected tag in the edit form
       if (task.priority) {
         editTagBtn.classList.add("hidden");
         displayEditSelectedTag(task.priority);
-        // فعال کردن دکمه‌ی مربوط به اولویت در لیست تگ‌ها
+        // Enable the priority button in the tag list
         editPriorityButtons.forEach((button) => {
           if (button.dataset.priority === task.priority) {
             button.classList.add("active");
